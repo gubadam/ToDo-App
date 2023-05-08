@@ -32,3 +32,13 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'azdo-iac-service-connection'
+    appType: 'webApp'
+    WebAppName: 'todolist'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    enableCustomDeployment: true
+    DeploymentType: 'webDeploy'
