@@ -33,10 +33,10 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: AzureWebApp@1
+- task: AzureRmWebAppDeployment@4
   inputs:
+    ConnectionType: 'AzureRM'
     azureSubscription: 'azdo-iac-service-connection'
     appType: 'webApp'
-    appName: 'todolist'
-    package: '$(build.artifactStagingDirectory)/WebApp.zip'
-    deploymentMethod: 'zipDeploy'
+    WebAppName: 'todolist'
+    packageForLinux: '$(build.artifactStagingDirectory)/WebApp.zip'
