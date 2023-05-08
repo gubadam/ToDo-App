@@ -39,4 +39,4 @@ steps:
     appType: 'webApp'
     appName: 'todolist'
     package: '$(build.artifactStagingDirectory)/WebApp.zip'
-    deploymentMethod: 'auto'
+    deploymentMethod: 'zipDeploy'
