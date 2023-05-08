@@ -39,6 +39,6 @@ steps:
     azureSubscription: 'azdo-iac-service-connection'
     appType: 'webApp'
     WebAppName: 'todolist'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    packageForLinux: '$(build.artifactStagingDirectory)/WebApp.zip.zip'
     enableCustomDeployment: true
     DeploymentType: 'webDeploy'
