@@ -1,10 +1,23 @@
+using Microsoft.EntityFrameworkCore;
+using Todo_App.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<MainDbContext>(options => {
+    options.UseSqlite(builder.Configuration.GetConnectionString("Db") ?? throw new InvalidOperationException("Connection string 'Db' not found."));
+});
+
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope()) {
+    var dataContext = scope.ServiceProvider.GetRequiredService<MainDbContext>();
+    dataContext.Database.Migrate();
+}
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment()) {
